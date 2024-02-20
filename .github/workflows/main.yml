@@ -1,0 +1,24 @@
+name: Manual workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags' 
+
+jobs:
+  printInputs:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+
+    - name: Log level
+      run: echo "Log level is ${{ github.event.inputs.logLevel }}"
+      
+    - name: Test scenario tags
+      run: echo "Test scenario tags are ${{ github.event.inputs.tags }}"
